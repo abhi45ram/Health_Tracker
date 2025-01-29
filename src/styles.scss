@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+/* src/styles.css or src/styles.scss */
+
+@import 'tailwindcss/utilities';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .search-input {
+    width: 200px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  

@@ -1,0 +1,56 @@
+<table mat-table [dataSource]="workouts" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let user" (click)="selectUser(user)">
+        {{ user.name }}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="workouts">
+      <th mat-header-cell *matHeaderCellDef> Workouts </th>
+      <td mat-cell *matCellDef="let user">
+        <ul>
+          <li *ngFor="let workout of user.workouts">
+            {{ workout.type }} - {{ workout.minutes }} minutes
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="totalWorkouts">
+      <th mat-header-cell *matHeaderCellDef> Total Workouts </th>
+      <td mat-cell *matCellDef="let user">
+        {{ user.workouts.length }}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="totalMinutes">
+      <th mat-header-cell *matHeaderCellDef> Total Minutes </th>
+      <td mat-cell *matCellDef="let user">
+        {{ getTotalMinutes(user.workouts) }}
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button (click)="deleteUser(user)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="['name', 'workouts', 'totalWorkouts', 'totalMinutes', 'delete']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'workouts', 'totalWorkouts', 'totalMinutes', 'delete'];"></tr>
+  </table>
+  
+  <div class="pagination">
+    <button>previous</button>
+    <button mat-raised-button color="accent"
+      *ngFor="let page of [1,2,3,4,5]"
+      (click)="onPaginate(page)">
+      {{ page }}
+    </button>
+    <button>next</button>
+  </div>
+  

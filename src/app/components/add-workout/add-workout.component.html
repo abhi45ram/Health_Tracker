@@ -1,0 +1,24 @@
+<div class="workout-form">
+    <mat-form-field appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Workout Type</mat-label>
+      <mat-select [(ngModel)]="workoutType">
+        <mat-option value="Running">Running</mat-option>
+        <mat-option value="Cycling">Cycling</mat-option>
+        <mat-option value="Swimming">Swimming</mat-option>
+        <mat-option value="Yoga">Yoga</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Minutes</mat-label>
+      <input matInput type="number" [(ngModel)]="workoutMinutes">
+    </mat-form-field>
+  
+    <button style="margin-top: -20px;" mat-raised-button color="primary" (click)="addWorkout()">Add Workout</button>
+  </div>
+  

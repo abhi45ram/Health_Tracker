@@ -1,0 +1,15 @@
+.workout-form {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+  
+    mat-form-field {
+      width: 200px;
+    }
+  
+    button {
+      margin-top: 8px;
+    }
+  }
+  
