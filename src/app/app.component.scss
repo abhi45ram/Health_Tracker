@@ -7,12 +7,13 @@
     text-align: center;
     font-size: 2rem;
     margin-bottom: 20px;
+    margin-top: 40px;
   }
   
   .filters {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   
     mat-form-field {
       width: 300px;
@@ -65,5 +66,16 @@
   .workout-chart {
     flex: 1; /* Graph takes remaining space */
     min-width: 500px; /* Ensure the graph doesn't shrink too much */
+  }
+  
+  .workout-list-heading {
+    color: rgb(112, 112, 220);
+    margin-top: 30px;
+  }
+
+  .progressSec{
+    color: rgb(112, 112, 220);
+    margin-top: 20px;
+    margin-bottom: -40px;
   }
   

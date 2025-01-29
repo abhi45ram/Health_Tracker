@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
+# Project Title
+
+## Code Coverage
+- 100% code coverage for `AddWorkoutComponent` and `WorkoutService`
+- Run `ng test --code-coverage` to generate coverage reports.
+- View detailed coverage report: [coverage/index.html](coverage/index.html).
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

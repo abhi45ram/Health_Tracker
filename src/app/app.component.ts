@@ -14,7 +14,6 @@ export class AppComponent {
   currentPage = 1;
   totalPages = 1;
   selecteduser: any = null;
-
   constructor(private workoutService: WorkoutService) {}
 
   ngOnInit() {
@@ -34,11 +33,10 @@ export class AppComponent {
   }
 
   paginate(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.userData = this.workoutService.paginate(page);
-    }
+    this.currentPage = page;
+    this.userData = this.workoutService.paginate(page);
   }
+  
 
   onPageChange(event: any) {
     this.currentPage = event.pageIndex + 1;

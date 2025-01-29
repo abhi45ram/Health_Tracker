@@ -2,7 +2,10 @@
   <h1 class="title">Health Challenge Tracker</h1>
 
   <app-add-workout (workoutAdded)="refreshWorkouts()"></app-add-workout>
-
+  <div>
+    <h1 class="workout-list-heading">Workout List Table</h1>
+  </div>  
+  
   <div class="filters">
     <mat-form-field appearance="outline">
       <mat-label>Search by Name</mat-label>
@@ -24,9 +27,13 @@
   <div class="workout-container">
     <app-workout-list 
     [workouts]="userData" 
-    (userSelected)="selectUser($event)" 
+    [currentPage]="currentPage" 
+    [totalPages]="totalPages"
     (paginate)="paginate($event)">
+    (userDeleted)="handleUserDeleted($event)">
   </app-workout-list>
+  
+  <div><h1 class="progressSec">Workout Progress Graph Section</h1></div>
 
   <div class="chart-wrapper">
     <div class="user-list">
