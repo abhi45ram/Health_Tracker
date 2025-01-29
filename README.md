@@ -1,5 +1,5 @@
 
-#Hoisted Link
+#Hosted Link
 https://health-tracker-t62s.vercel.app/
 # HealthChecker
 
