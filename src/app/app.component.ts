@@ -62,12 +62,12 @@ export class AppComponent {
       this.selecteduser = user;
       this.selectedUserWorkouts = user.workouts;
     } else {
-      this.selectedUserWorkouts = []; // Prevent errors
+      this.selectedUserWorkouts = []; 
     }
   }
 
   handleUserDeleted(user: any) {
     this.workoutService.deleteUser(user);
-    this.refreshWorkouts(); // Refresh the data after deleting
+    this.refreshWorkouts();
   }
 }

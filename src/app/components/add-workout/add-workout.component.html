@@ -1,27 +1,41 @@
-<div>
-    <h1 class="addwork">Add Workout Details</h1>
+<h1 class="text-2xl font-bold text-blue-500 mb-4">Add Workout Details</h1>
+
+<div class="p-6 bg-white rounded-lg shadow-md border border-gray-300">
+  <form [formGroup]="workoutForm" (ngSubmit)="addWorkout()" class="space-y-4">
+    <div>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>User Name</mat-label>
+        <input matInput formControlName="name" class="p-2 rounded border border-gray-300 focus:border-blue-500">
+        <mat-error *ngIf="name?.invalid && name?.touched" class="text-red-500">
+          Name is required and must be at least 3 characters long.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Workout Type</mat-label>
+        <mat-select formControlName="workoutType">
+          <mat-option value="Running">Running</mat-option>
+          <mat-option value="Cycling">Cycling</mat-option>
+          <mat-option value="Swimming">Swimming</mat-option>
+          <mat-option value="Yoga">Yoga</mat-option>
+        </mat-select>
+        <mat-error *ngIf="workoutType?.invalid && workoutType?.touched" class="text-red-500"> Workout type is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Minutes</mat-label>
+        <input matInput type="number" formControlName="workoutMinutes" class="p-2 rounded border border-gray-300 focus:border-blue-500">
+        <mat-error *ngIf="workoutMinutes?.invalid && workoutMinutes?.touched" class="text-red-500">
+          Minutes must be greater than 0.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="workoutForm.invalid"
+      class="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300"
+    > Add Workout
+    </button>
+  </form>
 </div>
-<div class="workout-form">
-    <mat-form-field appearance="outline">
-      <mat-label>User Name</mat-label>
-      <input matInput [(ngModel)]="name">
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Workout Type</mat-label>
-      <mat-select [(ngModel)]="workoutType">
-        <mat-option value="Running">Running</mat-option>
-        <mat-option value="Cycling">Cycling</mat-option>
-        <mat-option value="Swimming">Swimming</mat-option>
-        <mat-option value="Yoga">Yoga</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Minutes</mat-label>
-      <input matInput type="number" [(ngModel)]="workoutMinutes">
-    </mat-form-field>
-  
-    <button style="margin-top: -20px;" mat-raised-button color="primary" (click)="addWorkout()">Add Workout</button>
-  </div>
-  

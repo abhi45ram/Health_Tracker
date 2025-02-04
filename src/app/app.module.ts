@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AddWorkoutComponent } from './components/add-workout/add-workout.component';
 import { WorkoutListComponent } from './components/workout-list/workout-list.component';
 import { WorkoutChartComponent } from './components/workout-chart/workout-chart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
@@ -33,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

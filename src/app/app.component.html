@@ -1,18 +1,16 @@
-<div class="container">
-  <h1 class="title">Health Challenge Tracker</h1>
+<div class="max-w-6xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-center mb-6">Health Challenge Tracker</h1>
 
-  <app-add-workout (workoutAdded)="refreshWorkouts()"></app-add-workout>
-  <div>
-    <h1 class="workout-list-heading">Workout List Table</h1>
-  </div>  
-  
-  <div class="filters">
-    <mat-form-field appearance="outline">
+  <app-add-workout (workoutAdded)="refreshWorkouts()" ></app-add-workout><br>
+  <h1 class="text-2xl font-semibold mt-12 text-blue-500">Workout List Table</h1>
+
+  <div class="flex gap-4">
+    <mat-form-field appearance="outline" class="w-1/2">
       <mat-label>Search by Name</mat-label>
       <input matInput [(ngModel)]="searchText" (input)="onSearch()">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="w-1/2">
       <mat-label>Filter by Workout Type</mat-label>
       <mat-select [(ngModel)]="workoutTypeFilter" (selectionChange)="onFilter()">
         <mat-option value="">All</mat-option>
@@ -24,34 +22,34 @@
     </mat-form-field>
   </div>
 
-  <div class="workout-container">
-    <app-workout-list 
-    [workouts]="userData" 
-    [currentPage]="currentPage" 
-    [totalPages]="totalPages"
-    (paginate)="paginate($event)">
-    (userDeleted)="handleUserDeleted($event)">
-  </app-workout-list>
-  
-  <div><h1 class="progressSec">Workout Progress Graph Section</h1></div>
-
-  <div class="chart-wrapper">
-    <div class="user-list">
-      <div class="user-buttons">
-        <button 
-          *ngFor="let user of userData" 
-          (click)="selectUser(user)" 
-          [class.selected]="selecteduser?.name === user.name">
-          {{ user.name }}
-        </button>
-      </div>
+  <div >
+    <div >
+      <app-workout-list 
+        [workouts]="userData" 
+        [currentPage]="currentPage" 
+        [totalPages]="totalPages"
+        (paginate)="paginate($event)"
+        (userDeleted)="handleUserDeleted($event)">
+      </app-workout-list>
     </div>
+<div class="w-full mt-10">
+  <h1 class="text-xl font-semibold mb-4 text-blue-500">Workout Progress Graph Section</h1>
   
-    <div class="workout-chart" *ngIf="selectedUserWorkouts.length > 0">
-      <app-workout-chart [workouts]="selectedUserWorkouts"></app-workout-chart>
+  <div class="flex gap-8">
+    <div class="flex flex-col space-y-2">
+      <button mat-button
+        *ngFor="let user of userData" 
+        (click)="selectUser(user)" 
+        class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-300"
+        [ngClass]="{'bg-blue-500 text-white': selecteduser?.name === user.name}">
+        {{ user.name }}
+      </button>
+    </div>
+    <div class="w-full h-[500px] bg-white shadow-lg rounded-lg p-4">
+      <app-workout-chart *ngIf="selectedUserWorkouts.length > 0" 
+        [workouts]="selectedUserWorkouts">
+      </app-workout-chart>
     </div>
   </div>
-  
-  </div> 
-
 </div>
+

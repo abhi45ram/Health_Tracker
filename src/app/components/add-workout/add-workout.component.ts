@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WorkoutService } from '../../services/workout.service';
 
 @Component({
@@ -7,25 +8,39 @@ import { WorkoutService } from '../../services/workout.service';
   styleUrls: ['./add-workout.component.scss'],
 })
 export class AddWorkoutComponent {
-  name = '';
-  workoutType = '';
-  workoutMinutes = 0;
+  workoutForm: FormGroup;
 
   @Output() workoutAdded = new EventEmitter<void>();
 
-  constructor(private workoutService: WorkoutService) {}
+  constructor(private fb: FormBuilder, private workoutService: WorkoutService) {
+    this.workoutForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      workoutType: ['', Validators.required],
+      workoutMinutes: [0, [Validators.required, Validators.min(1)]],
+    });
+  }
+
+  get name() {
+    return this.workoutForm.get('name');
+  }
+
+  get workoutType() {
+    return this.workoutForm.get('workoutType');
+  }
+
+  get workoutMinutes() {
+    return this.workoutForm.get('workoutMinutes');
+  }
 
   addWorkout() {
-    if (this.name && this.workoutType && this.workoutMinutes) {
-      const workout = { type: this.workoutType, minutes: this.workoutMinutes };
-      const workoutData = { name: this.name, workout };
+    if (this.workoutForm.valid) {
+      const { name, workoutType, workoutMinutes } = this.workoutForm.value;
+      const workout = { type: workoutType, minutes: workoutMinutes };
+      const workoutData = { name, workout };
 
       this.workoutService.addWorkout(workoutData);
       this.workoutAdded.emit();
-
-      this.name = '';
-      this.workoutType = '';
-      this.workoutMinutes = 0;
+      this.workoutForm.reset();
     }
   }
 }
