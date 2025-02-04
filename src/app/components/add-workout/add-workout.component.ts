@@ -37,10 +37,20 @@ export class AddWorkoutComponent {
       const { name, workoutType, workoutMinutes } = this.workoutForm.value;
       const workout = { type: workoutType, minutes: workoutMinutes };
       const workoutData = { name, workout };
-
       this.workoutService.addWorkout(workoutData);
       this.workoutAdded.emit();
-      this.workoutForm.reset();
+  
+      this.workoutForm.reset({
+        name: '',
+        workoutType: '',
+        workoutMinutes: null
+      }); 
+      Object.keys(this.workoutForm.controls).forEach((key) => {
+        this.workoutForm.controls[key].setErrors(null);
+        this.workoutForm.controls[key].markAsPristine();
+        this.workoutForm.controls[key].markAsUntouched();
+      });
     }
   }
+  
 }
